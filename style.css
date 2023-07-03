@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(30, 107, 82);
+}
+
+canvas {
+    border: 10px solid rgb(139, 212, 195);
+    color: beige;
+}
