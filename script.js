@@ -5,11 +5,20 @@ document.addEventListener('keydown', keyPush);
 //canvas
 
 const canvas = document.querySelector('canvas');
+const title = document.querySelector('h1');
 const ctx = canvas.getContext('2d');
+
+//game
+
+const fps = 5;
+const snakeSize = 60;
+const tileCountX = canvas.width / snakeSize;
+const tileCountY = canvas.height / snakeSize;
+
+let score = 0;
 
 
 //player
-const snakeSize = 50;
 
 let snakeSpeed = snakeSize;
 let snakePosX = 0;
@@ -18,16 +27,18 @@ let snakePosY = canvas.height / 2;
 let velocityX = 1;
 let velocityY = 0;
 
-const tileCountX = canvas.width / snakeSize;
-const tileCountY = canvas.height / snakeSize;
+
+//food
+let foodPosX = 0;
+let foodPosY = 0;
 
 
 //loop
 
 function gameLoop() {
     drawStuff();
-    //moveStuff();        // !!!!!!!!!!!! start/ stop  !!!!!!!!!!!!!!
-    setTimeout(gameLoop, 1000 / 15);   //spusť se při kreslení
+    moveStuff();        // !!!!!!!!!!!! start/ stop  !!!!!!!!!!!!!!
+    setTimeout(gameLoop, 1000 / fps);   //spusť se při kreslení/rychlost
 }
 
 gameLoop();
@@ -38,7 +49,7 @@ gameLoop();
 function moveStuff() {
     snakePosX += snakeSpeed * velocityX;       //spouští pohyb
     snakePosY += snakeSpeed * velocityY;       //spouští pohyb
-
+        //kontroluje kolizi se stěnou
     if (snakePosX > canvas.width - snakeSize ) {
         snakePosX = 0;
     }
@@ -51,8 +62,14 @@ function moveStuff() {
         snakePosY = 0;
     }
 
-    if (snakePosY < -snakeSize) {
+    if (snakePosY < - snakeSize) {
         snakePosY = canvas.height;
+    }
+
+        // kolize s jídlem 
+    if (snakePosX === foodPosX && snakePosY === foodPosY) {
+        title.textContent = ++score;
+        resetFood();
     }
 }
 
@@ -63,7 +80,10 @@ function drawStuff() {
     rectangle('#1e6b52', 0, 0, canvas.width, canvas.height);
 
     // grid
-drawGrid()
+    drawGrid()
+
+    //food
+    rectangle('orangered', foodPosX, foodPosY, snakeSize, snakeSize)
 
     // snake
 
@@ -75,6 +95,12 @@ drawGrid()
 function rectangle (color, x, y, width, height) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
+}
+
+    // náhodná pozice jídla
+function resetFood() {
+    foodPosX = Math.floor(Math.random() * tileCountX) * snakeSize;
+    foodPosY = Math.floor(Math.random() * tileCountY) * snakeSize;
 }
 
 // KEYBOARD
@@ -124,4 +150,4 @@ function drawGrid() {
 }
 
 
-// 48'
+// 1h1'
