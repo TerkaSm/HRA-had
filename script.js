@@ -153,28 +153,32 @@ function gameOver() {
 
 function keyPush(event) {
     switch(event.key) {
-        case '4':                       //ArrowLeft
+        case '4':
+        case 'ArrowLeft':
             if (velocityX !== 1) {
                 velocityX = -1;
                 velocityY = 0;
             }
             break;
 
-        case '8':                       //ArrowUp
+        case '8':
+            case 'ArrowUp':
             if (velocityY !== 1) {
                 velocityX = 0;
                 velocityY = -1;
             }
             break;
 
-        case '6':                       //ArrowRight
+        case '6':
+        case 'ArrowRight':
             if (velocityX !== -1) {
                 velocityX = 1;
                 velocityY = 0;
             }
             break;
 
-        case '2':                       //ArrowDown
+        case '2':
+        case 'ArrowDown':
             if (velocityY !== -1) {
                 velocityX = 0;
                 velocityY = 1;
