@@ -182,7 +182,7 @@ function keyPush(event) {
             break;
         default:
             //reset game
-            if (! gameIsRunning)
+            if (! gameIsRunning) location.reload();
             break
     }
 }
