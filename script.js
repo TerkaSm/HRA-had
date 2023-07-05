@@ -108,11 +108,11 @@ function drawStuff() {
 
     //tail
     tail.forEach(snakePart =>
-        rectangle('#222', snakePart.x, snakePart.y, tileSize, tileSize)
+        rectangle('#333', snakePart.x, snakePart.y, tileSize, tileSize)
     )
     // snake
 
-    rectangle('#333', snakePosX, snakePosY, tileSize, tileSize);
+    rectangle('#666', snakePosX, snakePosY, tileSize, tileSize);
 }
 
     // draw rectangle
